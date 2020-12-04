@@ -77,7 +77,7 @@ This branch is going to let you start working with it. The command to check out 
 git checkout master
 ```
 
-**Step 3: This project needs an API Key from NASA, which you can get from [NASA API portal](https://api.nasa.gov/). Add the API key to the local.properties like this:
+**Step 3: This project needs an API Key from NASA, which you can get from [NASA API portal](https://api.nasa.gov/). Add the API key to the local.properties like this:**
 
 ```properties
 NASA_API_KEY=YOUR_NASA_API_KEY
