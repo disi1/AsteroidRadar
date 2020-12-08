@@ -1,9 +1,9 @@
-package com.udacity.asteroidradar.main
+package com.udacity.asteroidradar.ui.main
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.udacity.asteroidradar.Asteroid
+import com.udacity.asteroidradar.data.domain.Asteroid
 
 class MainViewModel : ViewModel() {
 
