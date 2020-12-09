@@ -3,6 +3,7 @@ package com.udacity.asteroidradar.ui.main
 import android.os.Bundle
 import android.view.*
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import com.udacity.asteroidradar.data.domain.Asteroid
@@ -17,23 +18,26 @@ class MainFragment : Fragment() {
         ViewModelProvider(this).get(MainViewModel::class.java)
     }
 
+    private lateinit var asteroidAdapter: AsteroidAdapter
+
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View? {
+                              savedInstanceState: Bundle?): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
         binding.viewModel = viewModel
 
-        val asteroidAdapter = AsteroidAdapter(AsteroidListener { asteroid ->
+        asteroidAdapter = AsteroidAdapter(AsteroidListener { asteroid ->
             viewModel.onAsteroidClicked(asteroid)
         })
 
         binding.asteroidRecycler.adapter = asteroidAdapter
-        val list = listOf(
-            Asteroid(12345678, "2018 BF5", "2020-02-08", 24.3, 0.622358, 15.515735, 0.445338, true),
-            Asteroid(123456789, "2018 BF5", "2020-02-08", 24.3, 0.622358, 15.515735, 0.445338, false)
-        )
-        asteroidAdapter.submitList(list)
+
+        viewModel.asteroids.observe(viewLifecycleOwner, { asteroids ->
+            asteroids?.apply {
+                asteroidAdapter.submitList(asteroids)
+            }
+        })
 
         viewModel.navigateToAsteroidDetails.observe(viewLifecycleOwner, { asteroid ->
             if(asteroid != null) {

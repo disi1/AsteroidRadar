@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.data.network
 
 import com.udacity.asteroidradar.data.database.AsteroidEntity
+import com.udacity.asteroidradar.data.domain.Asteroid
 
 data class NetworkAsteroidContainer(val asteroids: List<NetworkAsteroid>)
 
@@ -28,4 +29,19 @@ fun NetworkAsteroidContainer.asDatabaseModel(): Array<AsteroidEntity> {
             it.isPotentiallyHazardous
         )
     }.toTypedArray()
+}
+
+fun NetworkAsteroidContainer.asDomainModel(): List<Asteroid> {
+    return asteroids.map {
+        Asteroid(
+            it.id,
+            it.codename,
+            it.closeApproachDate,
+            it.absoluteMagnitude,
+            it.estimatedDiameter,
+            it.relativeVelocity,
+            it.distanceFromEarth,
+            it.isPotentiallyHazardous
+        )
+    }
 }
