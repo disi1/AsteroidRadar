@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.ui.main
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -36,6 +37,13 @@ class MainFragment : Fragment() {
         viewModel.asteroids.observe(viewLifecycleOwner, { asteroids ->
             asteroids?.apply {
                 asteroidAdapter.submitList(asteroids)
+            }
+        })
+
+        viewModel.errorOnFetchingNetworkData.observe(viewLifecycleOwner, {
+            if(it) {
+                Toast.makeText(activity, "Whoops! Something went wrong.\nPlease check your network connection, then try again", Toast.LENGTH_LONG).show()
+                viewModel.displayNetworkErrorCompleted()
             }
         })
 
