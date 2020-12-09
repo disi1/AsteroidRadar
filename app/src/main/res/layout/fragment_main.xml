@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.udacity.asteroidradar.main.MainViewModel" />
+            type="com.udacity.asteroidradar.ui.main.MainViewModel" />
 
     </data>
 
@@ -42,6 +42,17 @@
                 android:background="#55010613"
                 android:text="@string/image_of_the_day" />
         </FrameLayout>
+
+        <ProgressBar
+            android:id="@+id/loading_spinner"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            app:customVisibility="@{viewModel.asteroids}"
+            app:layout_constraintBottom_toBottomOf="@+id/asteroid_recycler"
+            app:layout_constraintEnd_toEndOf="@+id/asteroid_recycler"
+            app:layout_constraintStart_toStartOf="@+id/asteroid_recycler"
+            app:layout_constraintTop_toBottomOf="@+id/activity_main_image_of_the_day_layout" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/asteroid_recycler"
