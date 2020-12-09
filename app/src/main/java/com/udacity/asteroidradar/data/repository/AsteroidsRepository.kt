@@ -23,6 +23,8 @@ class AsteroidsRepository(private val database: AppDatabase) {
 
     suspend fun refreshAsteroids() {
         withContext(Dispatchers.IO) {
+            database.asteroidDao().deleteOutdatedAsteroids(getStartDateFormatted())
+
             val asteroidsString = Network.asteroids.getAsteroids(
                 startDate = getStartDateFormatted(),
                 endDate = getEndDateFormatted(),
