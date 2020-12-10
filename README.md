@@ -80,7 +80,7 @@ git checkout master
 **Step 3: This project needs an API Key from NASA, which you can get from [NASA API portal](https://api.nasa.gov/). Add the API key to the local.properties like this:**
 
 ```properties
-NASA_API_KEY=YOUR_NASA_API_KEY
+nasaApiKey=YOUR_NASA_API_KEY
 ```
 
 **Step 4: Run the project and check that it compiles correctly**
