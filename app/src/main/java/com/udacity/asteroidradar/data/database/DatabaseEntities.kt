@@ -1,8 +1,10 @@
 package com.udacity.asteroidradar.data.database
 
+import android.util.Log
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.udacity.asteroidradar.data.domain.Asteroid
+import com.udacity.asteroidradar.data.domain.PictureOfDay
 
 @Entity(tableName = "asteroid")
 data class AsteroidEntity constructor(
@@ -39,4 +41,12 @@ fun List<AsteroidEntity>.asDomainModel(): List<Asteroid> {
             it.isPotentiallyHazardous
         )
     }
+}
+
+fun PictureOfTheDayEntity.asDomainModel(): PictureOfDay {
+    return PictureOfDay(
+        this.mediaType,
+        this.title,
+        this.url
+    )
 }

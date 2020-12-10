@@ -1,9 +1,11 @@
 package com.udacity.asteroidradar.data.network
 
+import com.squareup.moshi.Json
 import com.udacity.asteroidradar.data.database.AsteroidEntity
-import com.udacity.asteroidradar.data.domain.Asteroid
+import com.udacity.asteroidradar.data.database.PictureOfTheDayEntity
 
 data class NetworkAsteroidContainer(val asteroids: List<NetworkAsteroid>)
+data class NetworkPictureOfTheDayContainer(val pictureOfTheDay: NetworkPictureOfTheDay)
 
 data class NetworkAsteroid (
     val id: Long,
@@ -14,6 +16,12 @@ data class NetworkAsteroid (
     val relativeVelocity: Double,
     val distanceFromEarth: Double,
     val isPotentiallyHazardous: Boolean
+)
+
+data class NetworkPictureOfTheDay(
+    @Json(name = "media_type") val mediaType: String,
+    val title: String,
+    val url: String
 )
 
 fun NetworkAsteroidContainer.asDatabaseModel(): Array<AsteroidEntity> {
@@ -31,17 +39,10 @@ fun NetworkAsteroidContainer.asDatabaseModel(): Array<AsteroidEntity> {
     }.toTypedArray()
 }
 
-fun NetworkAsteroidContainer.asDomainModel(): List<Asteroid> {
-    return asteroids.map {
-        Asteroid(
-            it.id,
-            it.codename,
-            it.closeApproachDate,
-            it.absoluteMagnitude,
-            it.estimatedDiameter,
-            it.relativeVelocity,
-            it.distanceFromEarth,
-            it.isPotentiallyHazardous
-        )
-    }
+fun NetworkPictureOfTheDayContainer.asDatabaseModel(): PictureOfTheDayEntity {
+    return PictureOfTheDayEntity(
+        mediaType = pictureOfTheDay.mediaType,
+        title = pictureOfTheDay.title,
+        url = pictureOfTheDay.url
+    )
 }

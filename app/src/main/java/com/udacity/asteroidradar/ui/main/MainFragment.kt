@@ -2,6 +2,7 @@ package com.udacity.asteroidradar.ui.main
 
 import android.os.Bundle
 import android.view.*
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -39,6 +40,13 @@ class MainFragment : Fragment() {
             }
         })
 
+        viewModel.errorOnFetchingNetworkData.observe(viewLifecycleOwner, {
+            if(it) {
+                Toast.makeText(activity, "Whoops! Something went wrong.\nPlease check your network connection, then try again", Toast.LENGTH_LONG).show()
+                viewModel.displayNetworkErrorCompleted()
+            }
+        })
+
         viewModel.navigateToAsteroidDetails.observe(viewLifecycleOwner, { asteroid ->
             if(asteroid != null) {
                 this.findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
@@ -57,6 +65,12 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when(item.itemId) {
+            R.id.show_today_asteroids_menu -> viewModel.updateAsteroidFilter(AsteroidFilter.TODAY)
+            R.id.show_week_asteroids_menu -> viewModel.updateAsteroidFilter(AsteroidFilter.WEEK)
+            R.id.show_saved_asteroids_menu -> viewModel.updateAsteroidFilter(AsteroidFilter.SAVED)
+        }
+
         return true
     }
 }

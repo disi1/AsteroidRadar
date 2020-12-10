@@ -1,6 +1,6 @@
 package com.udacity.asteroidradar.data.network
 
-import com.udacity.asteroidradar.data.domain.Asteroid
+import android.util.Log
 import com.udacity.asteroidradar.util.Constants
 import org.json.JSONObject
 import java.text.SimpleDateFormat
@@ -40,6 +40,21 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): NetworkAsteroidContainer {
     }
 
     return NetworkAsteroidContainer(asteroidList)
+}
+
+fun parsePictureOfDayJsonResult(jsonResult: JSONObject): NetworkPictureOfTheDayContainer {
+
+    val mediaType = jsonResult.getString("media_type")
+    val title = jsonResult.getString("title")
+    val url = jsonResult.getString("url")
+
+    val pictureOfTheDay = NetworkPictureOfTheDay(
+        mediaType = mediaType,
+        title = title,
+        url = url
+    )
+
+    return NetworkPictureOfTheDayContainer(pictureOfTheDay)
 }
 
 private fun getNextSevenDaysFormattedDates(): ArrayList<String> {

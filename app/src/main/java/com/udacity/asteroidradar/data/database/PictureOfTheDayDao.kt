@@ -10,8 +10,8 @@ import androidx.room.Query
 interface PictureOfTheDayDao {
 
     @Query("select * from picture_of_the_day where id = 0")
-    fun getPicture(): LiveData<PictureOfTheDayEntity>
+    fun getPicture(): LiveData<PictureOfTheDayEntity?>
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    fun savePicture(pictureOfTheDayEntity: PictureOfTheDayEntity)
+    fun insertPicture(pictureOfTheDayEntity: PictureOfTheDayEntity)
 }

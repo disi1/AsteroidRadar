@@ -18,6 +18,7 @@ class RefreshDataWorker(appContext: Context, params: WorkerParameters): Coroutin
         val repository = AsteroidsRepository(database)
 
         return try {
+            repository.refreshPictureOfTheDay()
             repository.refreshAsteroids()
             Result.success()
         } catch (e: HttpException) {
