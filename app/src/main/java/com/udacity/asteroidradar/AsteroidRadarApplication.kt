@@ -2,11 +2,14 @@ package com.udacity.asteroidradar
 
 import android.app.Application
 import androidx.work.*
+import com.squareup.picasso.OkHttp3Downloader
+import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.data.work.RefreshDataWorker
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import java.util.concurrent.TimeUnit
+
 
 class AsteroidRadarApplication: Application() {
 

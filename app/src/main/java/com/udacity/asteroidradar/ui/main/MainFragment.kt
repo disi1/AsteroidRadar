@@ -42,7 +42,11 @@ class MainFragment : Fragment() {
 
         viewModel.errorOnFetchingNetworkData.observe(viewLifecycleOwner, {
             if(it) {
-                Toast.makeText(activity, "Whoops! Something went wrong.\nPlease check your network connection, then try again", Toast.LENGTH_LONG).show()
+                Toast.makeText(
+                    activity,
+                    R.string.network_error,
+                    Toast.LENGTH_LONG
+                ).show()
                 viewModel.displayNetworkErrorCompleted()
             }
         })

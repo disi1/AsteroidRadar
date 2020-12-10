@@ -6,6 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.NetworkPolicy
 import com.squareup.picasso.Picasso
 import com.udacity.asteroidradar.data.domain.PictureOfDay
 
@@ -58,8 +59,10 @@ fun customVisibility(view: View, it: Any?) {
 fun bindImage(imageView: ImageView, image: PictureOfDay?) {
     image?.let {
         val imageUri = image.url.toUri().buildUpon().scheme("https").build()
-        Picasso.with(imageView.context)
-            .load(imageUri)
+        val picasso = Picasso.get()
+        picasso.setIndicatorsEnabled(true)
+        picasso.isLoggingEnabled = true
+        picasso.load(imageUri)
             .placeholder(R.drawable.placeholder_picture_of_day)
             .error(R.drawable.ic_baseline_broken_image_24)
             .into(imageView)
