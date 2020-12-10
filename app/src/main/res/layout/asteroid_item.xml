@@ -54,8 +54,7 @@
             app:layout_constraintEnd_toStartOf="@id/guideline2"
             app:layout_constraintTop_toTopOf="@+id/guideline3"
             app:statusIcon="@{asteroid.potentiallyHazardous}"
-            tools:src="@drawable/ic_status_normal"
-            app:statusIconContentDescription="@{asteroid.potentiallyHazardous}" />
+            tools:src="@drawable/ic_status_normal" />
 
         <TextView
             android:id="@+id/asteroid_codename_text"
@@ -66,9 +65,7 @@
             app:layout_constraintStart_toStartOf="@id/guideline"
             app:layout_constraintEnd_toStartOf="@id/asteroid_status_img"
             app:layout_constraintTop_toTopOf="@id/guideline3"
-            android:textColor="@color/default_text_color"
-            android:textStyle="bold"
-            android:textSize="18sp"/>
+            style="@style/title_style"/>
 
         <TextView
             android:id="@+id/asteroid_close_approach_date_text"
@@ -81,7 +78,6 @@
             app:layout_constraintTop_toBottomOf="@+id/asteroid_codename_text"
             android:text="@{asteroid.closeApproachDate}"
             tools:text="2020-02-08"
-            android:textColor="@color/text_grey"
-            android:textSize="16sp"/>
+            style="@style/value_style_gray" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

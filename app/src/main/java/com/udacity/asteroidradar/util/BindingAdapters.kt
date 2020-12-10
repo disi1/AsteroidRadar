@@ -3,22 +3,18 @@ package com.udacity.asteroidradar
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.core.net.toUri
 import androidx.databinding.BindingAdapter
+import com.squareup.picasso.Picasso
+import com.udacity.asteroidradar.data.domain.PictureOfDay
 
 @BindingAdapter("statusIcon")
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
-    } else {
-        imageView.setImageResource(R.drawable.ic_status_normal)
-    }
-}
-
-@BindingAdapter("statusIconContentDescription")
-fun bindAsteroidStatusImageContentDescription(imageView: ImageView, isHazardous: Boolean) {
-    if (isHazardous) {
         imageView.contentDescription = imageView.context.getString(R.string.potentially_hazardous_asteroid_description)
     } else {
+        imageView.setImageResource(R.drawable.ic_status_normal)
         imageView.contentDescription = imageView.context.getString(R.string.non_hazardous_asteroid_description)
     }
 }
@@ -27,8 +23,10 @@ fun bindAsteroidStatusImageContentDescription(imageView: ImageView, isHazardous:
 fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.asteroid_hazardous)
+        imageView.contentDescription = imageView.context.getString(R.string.potentially_hazardous_asteroid_description)
     } else {
         imageView.setImageResource(R.drawable.asteroid_safe)
+        imageView.contentDescription = imageView.context.getString(R.string.non_hazardous_asteroid_description)
     }
 }
 
@@ -53,4 +51,23 @@ fun bindTextViewToDisplayVelocity(textView: TextView, number: Double) {
 @BindingAdapter("customVisibility")
 fun customVisibility(view: View, it: Any?) {
     view.visibility = if(it!=null) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("imageUrl")
+fun bindImage(imageView: ImageView, image: PictureOfDay?) {
+    image?.let {
+        val imageUri = image.url.toUri().buildUpon().scheme("https").build()
+        Picasso.with(imageView.context)
+            .load(imageUri)
+            .placeholder(R.drawable.placeholder_picture_of_day)
+            .error(R.drawable.ic_baseline_broken_image_24)
+            .into(imageView)
+
+        imageView.contentDescription = image.title
+    }
+
+
+    if (image == null) {
+        imageView.contentDescription = imageView.context.getString(R.string.picture_of_day_error_content_description)
+    }
 }

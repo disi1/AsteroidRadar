@@ -1,6 +1,7 @@
 package com.udacity.asteroidradar.ui.main
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.data.database.AppDatabase.Companion.getInstance
 import com.udacity.asteroidradar.data.domain.Asteroid
@@ -14,6 +15,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val asteroidsRepository = AsteroidsRepository(database)
 
     val asteroids = asteroidsRepository.asteroids
+
+    val pictureOfDay = asteroidsRepository.pictureOfDay
 
     private val _navigateToAsteroidDetails = MutableLiveData<Asteroid>()
     val navigateToAsteroidDetails: LiveData<Asteroid>
@@ -36,7 +39,21 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     }
 
     init {
+        refreshPictureOfTheDay()
         refreshAsteroids()
+    }
+
+    private fun refreshPictureOfTheDay() {
+        viewModelScope.launch {
+            try {
+                asteroidsRepository.refreshPictureOfTheDay()
+                _errorOnFetchingNetworkData.value = false
+            } catch (networkError: IOException) {
+                if(asteroids.value.isNullOrEmpty()) {
+                    _errorOnFetchingNetworkData.value = true
+                }
+            }
+        }
     }
 
     private fun refreshAsteroids() {

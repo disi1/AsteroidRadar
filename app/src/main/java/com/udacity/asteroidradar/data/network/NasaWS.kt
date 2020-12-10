@@ -11,11 +11,18 @@ import retrofit2.converter.scalars.ScalarsConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Query
 
-interface NasaNeoWS {
+interface NasaWS {
     @GET("neo/rest/v1/feed")
     fun getAsteroids(
         @Query("start_date") startDate: String,
         @Query("end_date") endDate: String,
+        @Query("api_key") apiKey: String
+    ): Deferred<String>
+
+    @GET("planetary/apod")
+    fun getPictureOfTheDay(
+        @Query("date") date: String,
+        @Query("hd") hd: Boolean = false,
         @Query("api_key") apiKey: String
     ): Deferred<String>
 }
@@ -32,5 +39,5 @@ object Network {
         .addCallAdapterFactory(CoroutineCallAdapterFactory())
         .build()
 
-    val asteroids = retrofit.create(NasaNeoWS::class.java)
+    val nasa = retrofit.create(NasaWS::class.java)
 }
