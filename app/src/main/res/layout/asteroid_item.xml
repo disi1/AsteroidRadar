@@ -78,6 +78,6 @@
             app:layout_constraintTop_toBottomOf="@+id/asteroid_codename_text"
             android:text="@{asteroid.closeApproachDate}"
             tools:text="2020-02-08"
-            style="@style/value_style_gray" />
+            style="@style/subtitle_style_gray" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

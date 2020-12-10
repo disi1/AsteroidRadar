@@ -1,5 +1,6 @@
 package com.udacity.asteroidradar
 
+import android.util.Log
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -12,10 +13,10 @@ import com.udacity.asteroidradar.data.domain.PictureOfDay
 fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.ic_status_potentially_hazardous)
-        imageView.contentDescription = imageView.context.getString(R.string.potentially_hazardous_asteroid_description)
+        imageView.contentDescription = imageView.context.getString(R.string.potentially_hazardous_asteroid_image)
     } else {
         imageView.setImageResource(R.drawable.ic_status_normal)
-        imageView.contentDescription = imageView.context.getString(R.string.non_hazardous_asteroid_description)
+        imageView.contentDescription = imageView.context.getString(R.string.not_hazardous_asteroid_image)
     }
 }
 
@@ -23,10 +24,10 @@ fun bindAsteroidStatusImage(imageView: ImageView, isHazardous: Boolean) {
 fun bindDetailsStatusImage(imageView: ImageView, isHazardous: Boolean) {
     if (isHazardous) {
         imageView.setImageResource(R.drawable.asteroid_hazardous)
-        imageView.contentDescription = imageView.context.getString(R.string.potentially_hazardous_asteroid_description)
+        imageView.contentDescription = imageView.context.getString(R.string.potentially_hazardous_asteroid_image)
     } else {
         imageView.setImageResource(R.drawable.asteroid_safe)
-        imageView.contentDescription = imageView.context.getString(R.string.non_hazardous_asteroid_description)
+        imageView.contentDescription = imageView.context.getString(R.string.not_hazardous_asteroid_image)
     }
 }
 
@@ -63,11 +64,10 @@ fun bindImage(imageView: ImageView, image: PictureOfDay?) {
             .error(R.drawable.ic_baseline_broken_image_24)
             .into(imageView)
 
-        imageView.contentDescription = image.title
+        imageView.contentDescription = imageView.context.getString(R.string.nasa_picture_of_day_content_description_format, image.title)
     }
 
-
     if (image == null) {
-        imageView.contentDescription = imageView.context.getString(R.string.picture_of_day_error_content_description)
+        imageView.contentDescription = imageView.context.getString(R.string.this_is_nasa_s_picture_of_day_showing_nothing_yet)
     }
 }

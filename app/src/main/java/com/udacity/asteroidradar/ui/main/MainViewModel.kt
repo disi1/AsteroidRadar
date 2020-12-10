@@ -1,7 +1,6 @@
 package com.udacity.asteroidradar.ui.main
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.*
 import com.udacity.asteroidradar.data.database.AppDatabase.Companion.getInstance
 import com.udacity.asteroidradar.data.domain.Asteroid
@@ -9,12 +8,27 @@ import com.udacity.asteroidradar.data.repository.AsteroidsRepository
 import kotlinx.coroutines.launch
 import java.io.IOException
 
-class MainViewModel(application: Application) : AndroidViewModel(application) {
+enum class AsteroidFilter {
+    TODAY,
+    WEEK,
+    SAVED
+}
 
+class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val database = getInstance(application)
     private val asteroidsRepository = AsteroidsRepository(database)
 
-    val asteroids = asteroidsRepository.asteroids
+    private val _setAsteroidFilter = MutableLiveData(AsteroidFilter.SAVED)
+
+    val asteroids = Transformations.switchMap(_setAsteroidFilter) {
+        it?.let { filter ->
+            when(filter) {
+                AsteroidFilter.TODAY -> asteroidsRepository.todayAsteroids
+                AsteroidFilter.WEEK -> asteroidsRepository.weekAsteroids
+                AsteroidFilter.SAVED -> asteroidsRepository.asteroids
+            }
+        }
+    }
 
     val pictureOfDay = asteroidsRepository.pictureOfDay
 
@@ -36,6 +50,10 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     fun displayAsteroidDetailsComplete() {
         _navigateToAsteroidDetails.value = null
+    }
+
+    fun updateAsteroidFilter(filter: AsteroidFilter) {
+        _setAsteroidFilter.value = filter
     }
 
     init {

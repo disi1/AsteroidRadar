@@ -23,6 +23,14 @@ class AsteroidsRepository(private val database: AppDatabase) {
         it.asDomainModel()
     }
 
+    val todayAsteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao().getTodayAsteroids()) {
+        it.asDomainModel()
+    }
+
+    val weekAsteroids: LiveData<List<Asteroid>> = Transformations.map(database.asteroidDao().getWeekAsteroids()) {
+        it.asDomainModel()
+    }
+
     val pictureOfDay: LiveData<PictureOfDay> = Transformations.map(database.pictureOfTheDayDao().getPicture()) {
         it?.asDomainModel()
     }
