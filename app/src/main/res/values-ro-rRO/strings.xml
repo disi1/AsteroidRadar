@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Radar de Asteroizi</string>
+
+    <string name="next_week_asteroids">Săptămâna curentă</string>
+    <string name="today_asteroids">Astăzi</string>
+    <string name="saved_asteroids">Următoarele 6 zile</string>
+    <string name="close_approach_data_title">Data apropierii de Pământ</string>
+    <string name="absolute_magnitude_title">Magnitudinea absolută</string>
+    <string name="estimated_diameter_title">Diametrul estimat</string>
+    <string name="relative_velocity_title">Viteza relativă</string>
+    <string name="distance_from_earth_title">Distanța față de Pământ</string>
+    <string name="astronomical_unit_format">%f ua</string>
+    <string name="km_unit_format">%f km</string>
+    <string name="km_s_unit_format">%f km/s</string>
+    <string name="image_of_the_day">Fotografia zilei</string>
+    <string name="astronomica_unit_explanation">Unitatea astronomică (au) este o unitate de lungime cu o valoare asemănătoare distanței de la Pământ la Soare, egală cu aproximativ 150 de milioane de kilometri (93 milioane de mile).</string>
+    <string name="astronomical_unit_explanation_button">Definiția Unității Astronomice</string>
+    <string name="potentially_hazardous_asteroid_image">Imagine corespunzătoare unui asteroid potențial periculos</string>
+    <string name="not_hazardous_asteroid_image">Imagine corespunzătoare unui asteroid nepericulos</string>
+    <string name="this_is_nasa_s_picture_of_day_showing_nothing_yet">Loc destinat fotografiei zilei, de la Nasa. Fără informații, momentan.</string>
+    <string name="nasa_picture_of_day_content_description_format">Fotografia zilei, de la NASA: %s</string>
+    <string name="network_error">Ceva nu a mers bine.\nTe rugăm sa verifici conexiunea la internet, apoi să incerci din nou</string>
+</resources>

@@ -1,16 +1,16 @@
-package com.udacity.asteroidradar.api
+package com.udacity.asteroidradar.data.network
 
-import com.udacity.asteroidradar.Asteroid
-import com.udacity.asteroidradar.Constants
+import android.util.Log
+import com.udacity.asteroidradar.util.Constants
 import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
-fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
+fun parseAsteroidsJsonResult(jsonResult: JSONObject): NetworkAsteroidContainer {
     val nearEarthObjectsJson = jsonResult.getJSONObject("near_earth_objects")
 
-    val asteroidList = ArrayList<Asteroid>()
+    val asteroidList = ArrayList<NetworkAsteroid>()
 
     val nextSevenDaysFormattedDates = getNextSevenDaysFormattedDates()
     for (formattedDate in nextSevenDaysFormattedDates) {
@@ -33,13 +33,28 @@ fun parseAsteroidsJsonResult(jsonResult: JSONObject): ArrayList<Asteroid> {
             val isPotentiallyHazardous = asteroidJson
                 .getBoolean("is_potentially_hazardous_asteroid")
 
-            val asteroid = Asteroid(id, codename, formattedDate, absoluteMagnitude,
+            val asteroid = NetworkAsteroid(id, codename, formattedDate, absoluteMagnitude,
                 estimatedDiameter, relativeVelocity, distanceFromEarth, isPotentiallyHazardous)
             asteroidList.add(asteroid)
         }
     }
 
-    return asteroidList
+    return NetworkAsteroidContainer(asteroidList)
+}
+
+fun parsePictureOfDayJsonResult(jsonResult: JSONObject): NetworkPictureOfTheDayContainer {
+
+    val mediaType = jsonResult.getString("media_type")
+    val title = jsonResult.getString("title")
+    val url = jsonResult.getString("url")
+
+    val pictureOfTheDay = NetworkPictureOfTheDay(
+        mediaType = mediaType,
+        title = title,
+        url = url
+    )
+
+    return NetworkPictureOfTheDayContainer(pictureOfTheDay)
 }
 
 private fun getNextSevenDaysFormattedDates(): ArrayList<String> {

@@ -77,7 +77,13 @@ This branch is going to let you start working with it. The command to check out 
 git checkout master
 ```
 
-**Step 3: Run the project and check that it compiles correctly**
+**Step 3: This project needs an API Key from NASA, which you can get from [NASA API portal](https://api.nasa.gov/). Add the API key to the local.properties like this:**
+
+```properties
+NASA_API_KEY=YOUR_NASA_API_KEY
+```
+
+**Step 4: Run the project and check that it compiles correctly**
 
 Open the project in Android Studio and click the Run ‘app’ button, check that it runs correctly and you can see the app in your device or emulator.
 
