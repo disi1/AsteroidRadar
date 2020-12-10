@@ -23,28 +23,28 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp"/>
+            app:layout_constraintGuide_begin="@dimen/spacing_normal"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp"/>
+            app:layout_constraintGuide_end="@dimen/spacing_normal"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_begin="16dp"/>
+            app:layout_constraintGuide_begin="@dimen/spacing_normal"/>
 
         <androidx.constraintlayout.widget.Guideline
             android:id="@+id/guideline4"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
-            app:layout_constraintGuide_end="16dp"/>
+            app:layout_constraintGuide_end="@dimen/spacing_normal"/>
 
         <ImageView
             android:id="@+id/asteroid_status_img"
@@ -71,7 +71,7 @@
             android:id="@+id/asteroid_close_approach_date_text"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
+            android:layout_marginTop="@dimen/spacing_small"
             app:layout_constraintBottom_toTopOf="@id/guideline4"
             app:layout_constraintEnd_toStartOf="@id/asteroid_status_img"
             app:layout_constraintStart_toStartOf="@id/guideline"
