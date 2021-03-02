@@ -2,7 +2,7 @@
 
 **Asteroid Radar** is a mobile application which shows the asteroids detected by NASA that pass near Earth. You can view all the detected asteroids in a period of time, explore their data (size, velocity, distance to Earth) and if they are potentially hazardous. The application uses data provided by [NASA NeoWS](https://api.nasa.gov/) (Near Earth Object Web Service) API.
 
-I developed this application as part to of the Udacity's [Android Kotlin Developer Nanodegree](https://www.udacity.com/course/android-kotlin-developer-nanodegree--nd940) Program.
+I developed this application as part of the Udacity's [Android Kotlin Developer Nanodegree](https://www.udacity.com/course/android-kotlin-developer-nanodegree--nd940) Program.
 
 I built the app using the **MVVM (Model-View-ViewModel) architecture pattern** (to allow fast reaction to design changes) and the **Repository Pattern** (to hide the complexity of managing the interactions between the database and the networking code).
 Asteroid Radar is also built with **accessibility** in mind: it provides descriptions for all the texts, images and buttons in talk back mode.
