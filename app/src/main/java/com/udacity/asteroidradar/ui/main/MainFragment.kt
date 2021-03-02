@@ -21,8 +21,10 @@ class MainFragment : Fragment() {
 
     private lateinit var asteroidAdapter: AsteroidAdapter
 
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
-                              savedInstanceState: Bundle?): View {
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View {
         val binding = FragmentMainBinding.inflate(inflater)
         binding.lifecycleOwner = this
 
@@ -41,7 +43,7 @@ class MainFragment : Fragment() {
         })
 
         viewModel.errorOnFetchingNetworkData.observe(viewLifecycleOwner, {
-            if(it) {
+            if (it) {
                 Toast.makeText(
                     activity,
                     R.string.network_error,
@@ -52,7 +54,7 @@ class MainFragment : Fragment() {
         })
 
         viewModel.navigateToAsteroidDetails.observe(viewLifecycleOwner, { asteroid ->
-            if(asteroid != null) {
+            if (asteroid != null) {
                 this.findNavController().navigate(MainFragmentDirections.actionShowDetail(asteroid))
                 viewModel.displayAsteroidDetailsComplete()
             }
@@ -69,7 +71,7 @@ class MainFragment : Fragment() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
+        when (item.itemId) {
             R.id.show_today_asteroids_menu -> viewModel.updateAsteroidFilter(AsteroidFilter.TODAY)
             R.id.show_week_asteroids_menu -> viewModel.updateAsteroidFilter(AsteroidFilter.WEEK)
             R.id.show_saved_asteroids_menu -> viewModel.updateAsteroidFilter(AsteroidFilter.SAVED)
