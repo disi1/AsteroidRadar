@@ -34,11 +34,11 @@ NASA_API_KEY=YOUR_NASA_API_KEY
 ## Application flow
 Take a look at the things you can do with this app:
 
-![Screenshot 1](screenshots/screen_1.png)
-![Screenshot 1_1](screenshots/screen_1_1.png)
-![Screenshot 2](screenshots/screen_2.png)
-![Screenshot 3](screenshots/screen_3.png)
-![Screenshot 4](screenshots/screen_4.png)
+![Screenshot 1](screenshots/s_1.png)
+![Screenshot 1_1](screenshots/s_1_1.png)
+![Screenshot 2](screenshots/s_2.png)
+![Screenshot 3](screenshots/s_3.png)
+![Screenshot 4](screenshots/s_4.png)
 
 ## Get in touch
 Reach out at [diana.sica29@gmail.com](mailto:diana.sica29@gmail.com)
