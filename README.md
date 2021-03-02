@@ -1,6 +1,6 @@
 # Asteroid Radar
 
-**Asteroid Radar** is a mobile application which shows the asteroids detected by NASA that pass near Earth. You can view all the detected asteroids in a period of time, explore their data (size, velocity, distance to Earth) and if they are potentially hazardous. The application uses data provided by NASA NeoWS (Near Earth Object Web Service) API.
+**Asteroid Radar** is a mobile application which shows the asteroids detected by NASA that pass near Earth. You can view all the detected asteroids in a period of time, explore their data (size, velocity, distance to Earth) and if they are potentially hazardous. The application uses data provided by [NASA NeoWS](https://api.nasa.gov/) (Near Earth Object Web Service) API.
 
 I developed this application as part to of the Udacity's [Android Kotlin Developer Nanodegree](https://www.udacity.com/course/android-kotlin-developer-nanodegree--nd940) Program.
 
@@ -34,11 +34,11 @@ NASA_API_KEY=YOUR_NASA_API_KEY
 ## Application flow
 Take a look at the things you can do with this app:
 
-![Screenshot 1](screenshots/s_1.png)
-![Screenshot 1_1](screenshots/s_1_1.png)
-![Screenshot 2](screenshots/s_2.png)
-![Screenshot 3](screenshots/s_3.png)
-![Screenshot 4](screenshots/s_4.png)
+<img src="screenshots/s_1.png" width="400px"/>
+<img src="screenshots/s_1_1.png" width="400px"/>
+<img src="screenshots/s_2.png" width="400px"/>
+<img src="screenshots/s_3.png" width="400px"/>
+<img src="screenshots/s_4.png" width="400px"/>
 
 ## Get in touch
 Reach out at [diana.sica29@gmail.com](mailto:diana.sica29@gmail.com)
